@@ -8,7 +8,102 @@ This document is meant to provide a tool for you to demonstrate the design proce
 
 Place your class diagram below. Make sure you check the fil in the browser on github.com to make sure it is rendering correctly. If it is not, you will need to fix it. As a reminder, here is a link to tools that can help you create a class diagram: [Class Resources: Class Design Tools](https://github.com/CS5004-khoury-lionelle/Resources?tab=readme-ov-file#uml-design-tools)
 
+```mermaid
+---
+title: Initial Design
+---
+classDiagram
+    direction LR
+    class Builder {
+        -Builder()
+        +static Employee buildEmployeeFromCSV(String csv)
+        +static TimeCard buildTimeCardFromCSV(String csv)
+    }
+    Builder --> Employee : generates
+    Builder --> TimeCard : generates
 
+    class FileUtil {
+        +static final String EMPLOYEE_HEADER
+        +static final String PAY_STUB_HEADER
+        -FileUtil()
+        +static List<String> readFileToList(String file)
+        +static void writeFile(String outfile, List<String> lines)
+        +static void writeFile(String outfile, List<String> lines, boolean backup) 
+    }
+
+    class IEmployee {
+        <<interface>>
+        +String getName()
+        +String getID()
+        +double getPayRate()
+        +String getEmployeeType()
+        +double getYTDEarnings()
+        +double getYTDTaxesPaid()
+        +double getPretaxDeductions()
+        +IPayStub runPayroll(double hoursWorked)
+        +String toCSV()
+    }
+    IEmployee <|.. Employee
+    class Employee {
+        -String name
+        -String ID
+        -double payRate
+        -String employeeType
+        -double payRate
+        -double YTDEarnings
+        -double YTDTaxesPaid
+        -double pretaxDeductions
+        -double hoursWorked
+        -TimeCard timeCard
+        +String getName()
+        +String getID()
+        +double getPayRate()
+        +String getEmployeeType()
+        +double getYTDEarnings()
+        +double getYTDTaxesPaid()
+        +double getPretaxDeductions()
+        +PayStub runPayroll(double hoursWorked)
+        +String toCSV()
+    }
+    Employee --> PayStub : generates
+    Employee --> TimeCard: has
+
+    class IPayStub {
+        <<interface>>
+        +double getPay()
+        +double getTaxesPaid()
+        +String toCSV
+    }
+    IPayStub <|.. PayStub
+    class PayStub {
+        -double pay
+        -double taxesPaid
+        +double getPay()
+        +double getTaxesPaid()
+        +String toCSV
+    }
+
+    class ITimeCard {
+        <<interface>>
+        +getEmployeeID()
+        +getHoursWorked()
+    }
+    ITimeCard <|.. TimeCard
+    class TimeCard {
+        -String EmployeeID
+        -int hoursWorked
+        +String getEmployeeID()
+        +int getHoursWorked()
+    }
+
+    class PayrollGenerator {
+        -static final String DEFAULT_EMPLOYEE_FILE
+        -static final String DEFAULT_PAYROLL_FILE
+        -PayrollGenerator()
+        +static void main(String[] args)
+    }
+    PayrollGenerator ..> FileUtil : uses
+```
 
 
 
