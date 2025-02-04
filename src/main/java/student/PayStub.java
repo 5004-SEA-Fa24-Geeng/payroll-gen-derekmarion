@@ -7,21 +7,19 @@ public class PayStub implements IPayStub {
     private double pay;
     private double taxesPaid;
 
-    PayStub(double pay, double taxesPaid) {
+    public PayStub(double pay, double taxesPaid) {
         this.pay = pay;
         this.taxesPaid = taxesPaid;
     }
 
     @Override
     public double getPay() {
-        // Temporary implementation
-        return 0.0;
+        return this.pay;
     };
 
     @Override
     public double getTaxesPaid() {
-        // Temporary implementation
-        return 0.0;
+        return this.taxesPaid;
     };
 
     @Override
