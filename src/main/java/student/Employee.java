@@ -4,31 +4,23 @@ import student.IEmployee;
 
 public class Employee implements IEmployee {
 
+    private String employeeType; /* TODO: change this to enum */
     private String name;
     private String ID;
     private double payRate;
-    private String employeeType; /* TODO: change this to enum */
+    private double pretaxDeductions;
     private double YTDEarnings;
     private double YTDTaxesPaid;
-    private double pretaxDeductions;
-    private double hoursWorked;
-    private TimeCard timeCard;
 
-    public Employee(String name, String ID, double payRate, String employeeType, double YTDEarnings,
-            double YTDTaxesPaid, double pretaxDeductions, double hoursWorked, TimeCard timeCard) {
-        this.name = name;
-        this.ID = ID; /* TODO: refactor to use timecard's getter */
-        this.payRate = payRate;
+    public Employee(String employeeType, String name, String ID, double payRate, double pretaxDeductions,
+            double YTDEarnings, double YTDTaxesPaid) {
         this.employeeType = employeeType;
+        this.name = name;
+        this.ID = ID;
+        this.payRate = payRate;
+        this.pretaxDeductions = pretaxDeductions;
         this.YTDEarnings = YTDEarnings;
         this.YTDTaxesPaid = YTDTaxesPaid;
-        this.pretaxDeductions = pretaxDeductions;
-        this.hoursWorked = hoursWorked; /* TODO: refactor to use timecard's getter */
-        this.timeCard = timeCard;
-    }
-
-    public double getHoursWorked() {
-        return this.hoursWorked;
     }
 
     @Override

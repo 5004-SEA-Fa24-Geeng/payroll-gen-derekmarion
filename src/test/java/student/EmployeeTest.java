@@ -13,22 +13,15 @@ import main.java.student.TimeCard;
 public class EmployeeTest {
 
     private Employee employee;
-    private TimeCard timeCard;
 
     @BeforeEach
     public void setUp() {
-        timeCard = new TimeCard("1234", 25);
-        employee = new Employee("John Doe", "12345", 25.0, "FullTime", 50000.0, 10000.0, 2000.0, 40.0, timeCard);
+        employee = new Employee("HOURLY", "John Doe", "12345", 25.0, 2000.0, 50000.0, 10000.0);
     }
 
     @Test
     public void testGetName() {
         assertEquals("John Doe", employee.getName());
-    }
-
-    @Test
-    public void testGetHoursWorked() {
-        assertEquals(40.0, employee.getHoursWorked());
     }
 
     @Test
@@ -43,7 +36,7 @@ public class EmployeeTest {
 
     @Test
     public void testGetEmployeeType() {
-        assertEquals("FullTime", employee.getEmployeeType());
+        assertEquals("HOURLY", employee.getEmployeeType());
     }
 
     @Test
