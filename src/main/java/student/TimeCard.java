@@ -7,7 +7,7 @@ public class TimeCard implements ITimeCard {
     private String employeeID;
     private double hoursWorked;
 
-    public TimeCard(String employeeID, float hoursWorked) {
+    public TimeCard(String employeeID, double hoursWorked) {
         this.employeeID = employeeID;
         this.hoursWorked = hoursWorked;
     }
