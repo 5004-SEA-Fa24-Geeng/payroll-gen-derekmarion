@@ -35,4 +35,29 @@ public class EmployeeTest {
     public void testGetID() {
         assertEquals("12345", employee.getID());
     }
+
+    @Test
+    public void testGetPayRate() {
+        assertEquals(25.0, employee.getPayRate());
+    }
+
+    @Test
+    public void testGetEmployeeType() {
+        assertEquals("FullTime", employee.getEmployeeType());
+    }
+
+    @Test
+    public void testGetYTDEarnings() {
+        assertEquals(50000.0, employee.getYTDEarnings());
+    }
+
+    @Test
+    public void testGetYTDTaxesPaid() {
+        assertEquals(10000.0, employee.getYTDTaxesPaid());
+    }
+
+    @Test
+    public void testGetPretaxDeductions() {
+        assertEquals(2000.0, employee.getPretaxDeductions());
+    }
 }
