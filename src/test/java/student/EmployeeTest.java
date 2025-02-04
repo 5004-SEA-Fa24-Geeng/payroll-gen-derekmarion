@@ -30,4 +30,9 @@ public class EmployeeTest {
     public void testGetHoursWorked() {
         assertEquals(40.0, employee.getHoursWorked());
     }
+
+    @Test
+    public void testGetID() {
+        assertEquals("12345", employee.getID());
+    }
 }
