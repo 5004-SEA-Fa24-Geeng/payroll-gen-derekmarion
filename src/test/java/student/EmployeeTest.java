@@ -25,4 +25,9 @@ public class EmployeeTest {
     public void testGetName() {
         assertEquals("John Doe", employee.getName());
     }
+
+    @Test
+    public void testGetHoursWorked() {
+        assertEquals(40.0, employee.getHoursWorked());
+    }
 }
