@@ -113,17 +113,19 @@ public class Employee implements IEmployee {
         double pay;
         if (this.getEmployeeType().equals("HOURLY")) {
             double regularPay = Math.min(hoursWorked, 40) * this.getPayRate();
-            double overtime_pay = hoursWorked % 40 * this.getPayRate() * 1.5; // TODO: remove magic number
+            double overtime_pay = Math.max(0, hoursWorked - 40) * this.getPayRate() * 1.5; // TODO: remove magic number
             pay = regularPay + overtime_pay;
             System.out.println("Hourly Employee - Regular Pay: " + regularPay
                     + ", Total Pay: " + pay);
         } else if (this.getEmployeeType().equals("SALARY")) {
-            pay = this.getPayRate() / 24; // TODO: get rid of magic number
+            pay = this.getPayRate() / 24.0; // TODO: get rid of magic number
             System.out.println("Salary Employee - Pay: " + pay);
         } else {
             System.out.println("Unknown employee type: " + this.getEmployeeType());
             return null; // Unknown employee type
         }
+
+        // Calculate net pay
         double netPay = pay - this.getPretaxDeductions();
 
         // Calculate taxes
@@ -139,7 +141,8 @@ public class Employee implements IEmployee {
         this.addYTDEarnings(finalNetPay.doubleValue());
         this.addYTDTaxesPaid(roundedTaxes.doubleValue());
 
-        return new PayStub(finalNetPay.doubleValue(), roundedTaxes.doubleValue());
+        return new PayStub(this.getName(), finalNetPay.doubleValue(), roundedTaxes.doubleValue(),
+                this.getYTDEarnings(), this.getYTDTaxesPaid());
 
     }
 
