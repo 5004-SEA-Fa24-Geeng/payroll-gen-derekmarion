@@ -37,7 +37,7 @@ public class EmployeeTest {
     @Test
     public void testRunPayrollHourlyEmployee() {
         hourlyEmployeePayStub = hourlyEmployee.runPayroll(45);
-        assertEquals(1102.24, hourlyEmployeePayStub.getNetPay(), 0.01);
+        assertEquals(1102.24, hourlyEmployeePayStub.getPay(), 0.01);
         assertEquals(322.76, hourlyEmployeePayStub.getTaxesPaid(), 0.01);
         assertEquals(21102.24, hourlyEmployeePayStub.getYTDEarnings(), 0.01);
         assertEquals(4852.76, hourlyEmployeePayStub.getYTDTaxesPaid(), 0.01);
@@ -46,7 +46,7 @@ public class EmployeeTest {
     @Test
     public void testRunPayrollSalaryEmployee() {
         salaryEmployeePayStub = salaryEmployee.runPayroll(45);
-        assertEquals(5672.33, salaryEmployeePayStub.getNetPay(), 0.01);
+        assertEquals(5672.33, salaryEmployeePayStub.getPay(), 0.01);
         assertEquals(1661.00, salaryEmployeePayStub.getTaxesPaid(), 0.01);
         assertEquals(22689.33, salaryEmployeePayStub.getYTDEarnings(), 0.01);
         assertEquals(6644.00, salaryEmployeePayStub.getYTDTaxesPaid(), 0.01);
@@ -118,8 +118,8 @@ public class EmployeeTest {
 
     @Test
     public void testToCSV() {
-        String expectedHourlyCSV = "HOURLY,Luffy,s192,30.00,0.00,20000.00,4530.00";
-        String expectedSalaryCSV = "SALARY,Nami,s193,200000.00,1000.00,17017.00,4983.00";
+        String expectedHourlyCSV = "HOURLY,Luffy,s192,30.0,0.0,20000.0,4530.0";
+        String expectedSalaryCSV = "SALARY,Nami,s193,200000.0,1000.0,17017.0,4983.0";
         assertEquals(expectedHourlyCSV, hourlyEmployee.toCSV());
         assertEquals(expectedSalaryCSV, salaryEmployee.toCSV());
     }

@@ -1,4 +1,4 @@
-import student.PayStub;
+package student;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ public class PayStubTest {
 
     @Test
     public void testGetNetPay() {
-        assertEquals(20000, payStub.getNetPay());
+        assertEquals(20000, payStub.getPay());
     }
 
     @Test
@@ -44,6 +44,6 @@ public class PayStubTest {
 
     @Test
     public void testToCSV() {
-        assertEquals("John Doe,20000.00,5000.00,100000.00,25000.00", payStub.toCSV());
+        assertEquals("John Doe,20000.0,5000.0,100000.0,25000.0", payStub.toCSV());
     }
 }

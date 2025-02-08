@@ -3,7 +3,7 @@ package student;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class Employee implements IEmployee {
+public class Employee extends CSVStringFormatter implements IEmployee {
 
     private EmployeeType employeeType;
     private String name;
@@ -119,10 +119,11 @@ public class Employee implements IEmployee {
         employeeString.append(this.getEmployeeType().name()).append(",");
         employeeString.append(this.getName()).append(",");
         employeeString.append(this.getID()).append(",");
-        employeeString.append(String.format("%.2f", this.getPayRate())).append(",");
-        employeeString.append(String.format("%.2f", this.getPretaxDeductions())).append(",");
-        employeeString.append(String.format("%.2f", this.getYTDEarnings())).append(",");
-        employeeString.append(String.format("%.2f", this.getYTDTaxesPaid()));
+        employeeString.append(formatDouble(this.getPayRate())).append(",");
+        employeeString.append(formatDouble(this.getPretaxDeductions())).append(",");
+        employeeString.append(formatDouble(this.getYTDEarnings())).append(",");
+        employeeString.append(formatDouble(this.getYTDTaxesPaid()));
+        System.out.println("Employee CSV: " + employeeString.toString());
         return employeeString.toString();
     }
 }

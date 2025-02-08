@@ -1,6 +1,6 @@
 package student;
 
-public class PayStub implements IPayStub {
+public class PayStub extends CSVStringFormatter implements IPayStub {
 
     private String employeeName;
     private double netPay;
@@ -26,10 +26,6 @@ public class PayStub implements IPayStub {
         return this.taxes;
     };
 
-    public double getNetPay() {
-        return this.netPay;
-    }
-
     public String getEmployeeName() {
         return this.employeeName;
     }
@@ -44,11 +40,13 @@ public class PayStub implements IPayStub {
 
     @Override
     public String toCSV() {
-        return String.format("%s,%.2f,%.2f,%.2f,%.2f",
-                this.employeeName,
-                this.getPay(),
-                this.getTaxesPaid(),
-                this.YTDEarnings,
-                this.YTDTaxesPaid);
+        StringBuilder payStubString = new StringBuilder();
+        payStubString.append(this.getEmployeeName()).append(",");
+        payStubString.append(formatDouble(this.getPay())).append(",");
+        payStubString.append(formatDouble(this.getTaxesPaid())).append(",");
+        payStubString.append(formatDouble(this.getYTDEarnings())).append(",");
+        payStubString.append(formatDouble(this.getYTDTaxesPaid()));
+        System.out.println("PayStub CSV: " + payStubString.toString());
+        return payStubString.toString();
     }
 }
