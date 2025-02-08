@@ -28,17 +28,17 @@ public final class Builder {
         String[] values = csv.split(",");
         EmployeeType employeeType = EmployeeType.valueOf(values[0]);
         String name = values[1];
-        String ID = values[2];
+        String id = values[2];
         double payRate = Double.parseDouble(values[3]);
         double pretaxDeductions = Double.parseDouble(values[4]);
-        double YTDEarnings = Double.parseDouble(values[5]);
-        double YTDTaxesPaid = Double.parseDouble(values[6]);
+        double ytdEarnings = Double.parseDouble(values[5]);
+        double ytdTaxesPaid = Double.parseDouble(values[6]);
 
         switch (employeeType) {
             case HOURLY:
-                return new HourlyEmployee(name, ID, payRate, pretaxDeductions, YTDEarnings, YTDTaxesPaid);
+                return new HourlyEmployee(name, id, payRate, pretaxDeductions, ytdEarnings, ytdTaxesPaid);
             case SALARY:
-                return new SalaryEmployee(name, ID, payRate, pretaxDeductions, YTDEarnings, YTDTaxesPaid);
+                return new SalaryEmployee(name, id, payRate, pretaxDeductions, ytdEarnings, ytdTaxesPaid);
             default:
                 throw new IllegalArgumentException("Unknown employee type: " + employeeType);
         }
