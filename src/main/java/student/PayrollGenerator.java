@@ -33,6 +33,8 @@ public final class PayrollGenerator {
     private static final String DEFAULT_PAYROLL_FILE = "resources/pay_stubs.csv";
     /** default time card file name. */
     private static final String DEFAULT_TIME_CARD_FILE = "resources/time_cards.csv";
+    /** output for updated employee file */
+    private static final String EMPLOYEE_OUT_FILE = "resources/employees_out.csv";
 
     /**
      * private constructor to prevent instantiation.
@@ -101,8 +103,7 @@ public final class PayrollGenerator {
         // now save out employees to a new file
         employeeLines = employees.stream().map(IEmployee::toCSV).collect(Collectors.toList());
         employeeLines.add(0, FileUtil.EMPLOYEE_HEADER);
-        FileUtil.writeFile("resources/employees_out.csv", employeeLines); // TODO: modify this to use separate
-                                                                          // method/constant
+        FileUtil.writeFile(EMPLOYEE_OUT_FILE, employeeLines);
 
         // now save out the pay stubs
         List<String> payStubLines = payStubs.stream().filter(x -> x != null).map(IPayStub::toCSV)
