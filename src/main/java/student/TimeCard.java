@@ -1,6 +1,4 @@
-package main.java.student;
-
-import student.ITimeCard;
+package student;
 
 public class TimeCard implements ITimeCard {
 

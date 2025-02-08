@@ -1,8 +1,5 @@
 package student;
 
-import main.java.student.TimeCard;
-import main.java.student.Employee;
-
 /**
  * This is a static class (essentially functions) that will help you build
  * objects from CSV strings.
@@ -26,7 +23,7 @@ public final class Builder {
      * @param csv the CSV string
      * @return the employee object
      */
-    public static IEmployee buildEmployeeFromCSV(String csv) {
+    public static Employee buildEmployeeFromCSV(String csv) {
 
         String[] values = csv.split(",");
         String employeeType = values[0];
@@ -47,7 +44,7 @@ public final class Builder {
      * @param csv csv string
      * @return a TimeCard object
      */
-    public static ITimeCard buildTimeCardFromCSV(String csv) {
+    public static TimeCard buildTimeCardFromCSV(String csv) {
 
         String[] values = csv.split(",");
         String employeeID = values[0];

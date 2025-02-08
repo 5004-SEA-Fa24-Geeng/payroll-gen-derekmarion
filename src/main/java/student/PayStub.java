@@ -1,6 +1,4 @@
-package main.java.student;
-
-import student.IPayStub;
+package student;
 
 public class PayStub implements IPayStub {
 
@@ -27,6 +25,22 @@ public class PayStub implements IPayStub {
     public double getTaxesPaid() {
         return this.taxes;
     };
+
+    public double getNetPay() {
+        return this.netPay;
+    }
+
+    public String getEmployeeName() {
+        return this.employeeName;
+    }
+
+    public double getYTDEarnings() {
+        return this.YTDEarnings;
+    }
+
+    public double getYTDTaxesPaid() {
+        return this.YTDTaxesPaid;
+    }
 
     @Override
     public String toCSV() {

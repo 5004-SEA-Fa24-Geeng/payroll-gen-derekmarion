@@ -1,9 +1,7 @@
-package main.java.student;
+package student;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-
-import student.IEmployee;
 
 public class Employee implements IEmployee {
 
@@ -163,7 +161,7 @@ public class Employee implements IEmployee {
         employeeString.append(String.format("%.2f", this.getPayRate())).append(",");
         employeeString.append(String.format("%.2f", this.getPretaxDeductions())).append(",");
         employeeString.append(String.format("%.2f", this.getYTDEarnings())).append(",");
-        employeeString.append(String.format("%.2f", this.getYTDTaxesPaid())).append(",");
+        employeeString.append(String.format("%.2f", this.getYTDTaxesPaid()));
         return employeeString.toString();
     }
 }
