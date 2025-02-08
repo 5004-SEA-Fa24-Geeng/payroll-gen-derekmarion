@@ -36,9 +36,9 @@ public final class Builder {
 
         switch (employeeType) {
             case HOURLY:
-                return new HourlyEmployee(name, id, payRate, pretaxDeductions, ytdEarnings, ytdTaxesPaid);
+                return new HourlyEmployee(name, id, payRate, ytdEarnings, ytdTaxesPaid, pretaxDeductions);
             case SALARY:
-                return new SalaryEmployee(name, id, payRate, pretaxDeductions, ytdEarnings, ytdTaxesPaid);
+                return new SalaryEmployee(name, id, payRate, ytdEarnings, ytdTaxesPaid, pretaxDeductions);
             default:
                 throw new IllegalArgumentException("Unknown employee type: " + employeeType);
         }

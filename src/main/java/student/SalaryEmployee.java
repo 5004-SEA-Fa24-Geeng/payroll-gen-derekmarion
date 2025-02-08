@@ -10,16 +10,17 @@ public class SalaryEmployee extends Employee {
     /**
      * Constructs a SalaryEmployee object.
      *
-     * @param name the name of the employee
-     * @param ID the ID of the employee
-     * @param payRate the pay rate of the employee
+     * @param name             the name of the employee
+     * @param id               the ID of the employee
+     * @param payRate          the pay rate of the employee
+     * @param ytdEarnings      the year-to-date earnings of the employee
+     * @param ytdTaxesPaid     the year-to-date taxes paid by the employee
      * @param pretaxDeductions the pretax deductions of the employee
-     * @param YTDEarnings the year-to-date earnings of the employee
-     * @param YTDTaxesPaid the year-to-date taxes paid by the employee
+     * @param employeeType     the type of employee
      */
-    public SalaryEmployee(String name, String ID, double payRate, double pretaxDeductions,
-            double YTDEarnings, double YTDTaxesPaid) {
-        super(EmployeeType.SALARY, name, ID, payRate, pretaxDeductions, YTDEarnings, YTDTaxesPaid);
+    public SalaryEmployee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid,
+            double pretaxDeductions) {
+        super(name, id, payRate, ytdEarnings, ytdTaxesPaid, pretaxDeductions, EmployeeType.SALARY);
     }
 
     @Override

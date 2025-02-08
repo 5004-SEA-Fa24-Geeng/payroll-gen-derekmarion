@@ -8,35 +8,35 @@ import java.math.RoundingMode;
  */
 public abstract class Employee extends CSVStringFormatter implements IEmployee {
 
-    private EmployeeType employeeType;
     private String name;
     private String id;
     private double payRate;
-    private double pretaxDeductions;
     private double ytdEarnings;
     private double ytdTaxesPaid;
+    private double pretaxDeductions;
+    private EmployeeType employeeType;
+
     private static double taxRate = 0.2265;
 
-    /**
-     * Constructs an Employee object.
-     *
-     * @param employeeType     the type of the employee
-     * @param name             the name of the employee
-     * @param ID               the ID of the employee
-     * @param payRate          the pay rate of the employee
-     * @param pretaxDeductions the pretax deductions of the employee
-     * @param YTDEarnings      the year-to-date earnings of the employee
-     * @param YTDTaxesPaid     the year-to-date taxes paid by the employee
-     */
-    public Employee(EmployeeType employeeType, String name, String ID, double payRate, double pretaxDeductions,
-            double YTDEarnings, double YTDTaxesPaid) {
-        this.employeeType = employeeType;
+    public Employee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid,
+            double pretaxDeductions, EmployeeType employeeType) {
         this.name = name;
-        this.id = ID;
+        this.id = id;
         this.payRate = payRate;
         this.pretaxDeductions = pretaxDeductions;
-        this.ytdEarnings = YTDEarnings;
-        this.ytdTaxesPaid = YTDTaxesPaid;
+        this.ytdEarnings = ytdEarnings;
+        this.ytdTaxesPaid = ytdTaxesPaid;
+        this.employeeType = employeeType;
+    }
+
+    /**
+     * Gets the type of the employee.
+     *
+     * @return the type of the employee
+     */
+    @Override
+    public EmployeeType getEmployeeType() {
+        return this.employeeType;
     }
 
     /**
@@ -67,16 +67,6 @@ public abstract class Employee extends CSVStringFormatter implements IEmployee {
     @Override
     public double getPayRate() {
         return this.payRate;
-    }
-
-    /**
-     * Gets the type of the employee.
-     *
-     * @return the type of the employee
-     */
-    @Override
-    public EmployeeType getEmployeeType() {
-        return this.employeeType;
     }
 
     /**
