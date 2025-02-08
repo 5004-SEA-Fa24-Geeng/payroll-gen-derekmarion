@@ -78,8 +78,8 @@ public class EmployeeTest {
 
     @Test
     public void testGetEmployeeType() {
-        assertEquals("HOURLY", hourlyEmployee.getEmployeeType());
-        assertEquals("SALARY", salaryEmployee.getEmployeeType());
+        assertEquals(EmployeeType.HOURLY, hourlyEmployee.getEmployeeType());
+        assertEquals(EmployeeType.SALARY, salaryEmployee.getEmployeeType());
     }
 
     @Test

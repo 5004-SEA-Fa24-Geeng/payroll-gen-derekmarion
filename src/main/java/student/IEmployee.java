@@ -43,7 +43,7 @@ public interface IEmployee {
      * 
      * @return the type of the employee as a string
      */
-    String getEmployeeType();
+    EmployeeType getEmployeeType();
 
     /**
      * Gets the YTD earnings of the employee.

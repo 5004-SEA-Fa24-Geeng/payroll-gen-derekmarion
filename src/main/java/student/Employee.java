@@ -5,7 +5,7 @@ import java.math.RoundingMode;
 
 public class Employee implements IEmployee {
 
-    private String employeeType; /* TODO: change this to enum */
+    private EmployeeType employeeType;
     private String name;
     private String ID;
     private double payRate;
@@ -16,7 +16,7 @@ public class Employee implements IEmployee {
     private static double TAX_RATE = 0.2265;
     private static double SALARIED_MONTHLY_PAYMENTS = 24.0;
 
-    public Employee(String employeeType, String name, String ID, double payRate, double pretaxDeductions,
+    public Employee(EmployeeType employeeType, String name, String ID, double payRate, double pretaxDeductions,
             double YTDEarnings, double YTDTaxesPaid) {
         this.employeeType = employeeType;
         this.name = name;
@@ -43,7 +43,7 @@ public class Employee implements IEmployee {
     }
 
     @Override
-    public String getEmployeeType() {
+    public EmployeeType getEmployeeType() {
         return this.employeeType;
     }
 
@@ -112,13 +112,13 @@ public class Employee implements IEmployee {
         }
         // Calculate pay and net pay based on employee type
         double pay;
-        if (this.getEmployeeType().equals("HOURLY")) {
+        if (this.employeeType == EmployeeType.HOURLY) {
             double regularPay = Math.min(hoursWorked, 40) * this.getPayRate();
             double overtime_pay = Math.max(0, hoursWorked - 40) * this.getPayRate() * OVERTIME_RATE;
             pay = regularPay + overtime_pay;
             System.out.println("Hourly Employee - Regular Pay: " + regularPay
                     + ", Total Pay: " + pay);
-        } else if (this.getEmployeeType().equals("SALARY")) {
+        } else if (this.employeeType == EmployeeType.SALARY) {
             pay = this.getPayRate() / SALARIED_MONTHLY_PAYMENTS;
             System.out.println("Salary Employee - Pay: " + pay);
         } else {
@@ -158,7 +158,7 @@ public class Employee implements IEmployee {
     @Override
     public String toCSV() {
         StringBuilder employeeString = new StringBuilder();
-        employeeString.append(this.getEmployeeType()).append(",");
+        employeeString.append(this.getEmployeeType().name()).append(",");
         employeeString.append(this.getName()).append(",");
         employeeString.append(this.getID()).append(",");
         employeeString.append(String.format("%.2f", this.getPayRate())).append(",");

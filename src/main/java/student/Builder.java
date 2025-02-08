@@ -26,7 +26,7 @@ public final class Builder {
     public static Employee buildEmployeeFromCSV(String csv) {
 
         String[] values = csv.split(",");
-        String employeeType = values[0];
+        EmployeeType employeeType = EmployeeType.valueOf(values[0]);
         String name = values[1];
         String ID = values[2];
         double payRate = Double.parseDouble(values[3]);
