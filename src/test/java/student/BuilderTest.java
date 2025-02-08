@@ -1,25 +1,51 @@
-// package test.java.student;
+package student;
 
-// import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
-// import java.beans.Transient;
+public class BuilderTest {
 
-// import org.junit.jupiter.api.BeforeEach;
-// import org.junit.jupiter.api.Test;
+    private String hourlyEmployeeCSV;
+    private String salaryEmployeeCSV;
+    private String invalidEmployeeCSV;
 
-// import main.java.student.Employee;
-// import main.java.student.TimeCard;
+    @BeforeEach
+    public void setUp() {
+        hourlyEmployeeCSV = "HOURLY,John Doe,12345,25.00,2000.00,50000.00,10000.00";
+        salaryEmployeeCSV = "SALARY,Jane Smith,67890,50000.00,3000.00,100000.00,20000.00";
+        invalidEmployeeCSV = "INVALID,John Doe,12345,25.00,2000.00,50000.00,10000.00";
+    }
 
-// public class BuilderTest {
+    @Test
+    public void testBuildHourlyEmployeeFromCSV() {
+        Employee employee = Builder.buildEmployeeFromCSV(hourlyEmployeeCSV);
+        assertEquals("John Doe", employee.getName());
+        assertEquals("12345", employee.getID());
+        assertEquals(25.00, employee.getPayRate());
+        assertEquals(2000.00, employee.getPretaxDeductions());
+        assertEquals(50000.00, employee.getYTDEarnings());
+        assertEquals(10000.00, employee.getYTDTaxesPaid());
+        assertEquals(HourlyEmployee.class, employee.getClass());
+    }
 
-//     private Employee employee;
-//     private TimeCard timeCard;
-//     private String input;
+    @Test
+    public void testBuildSalaryEmployeeFromCSV() {
+        Employee employee = Builder.buildEmployeeFromCSV(salaryEmployeeCSV);
+        assertEquals("Jane Smith", employee.getName());
+        assertEquals("67890", employee.getID());
+        assertEquals(50000.00, employee.getPayRate());
+        assertEquals(3000.00, employee.getPretaxDeductions());
+        assertEquals(100000.00, employee.getYTDEarnings());
+        assertEquals(20000.00, employee.getYTDTaxesPaid());
+        assertEquals(SalaryEmployee.class, employee.getClass());
+    }
 
-//     @BeforeEach
-//     public void setUp() {
-//         timeCard = new TimeCard("1234", 25);
-//         employee = new Employee("John Doe", "12345", 25.0, "HOURLY", 50000.0, 10000.0, 2000.0, 40.0, timeCard);
-//         input = "HOURLY,John Doe,12345,25.00,2000.00,50000.00,10000.00";
-//     }
-// }
+    @Test
+    public void testBuildEmployeeFromCSVWithInvalidType() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            Builder.buildEmployeeFromCSV(invalidEmployeeCSV);
+        });
+    }
+}

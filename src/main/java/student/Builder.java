@@ -34,7 +34,14 @@ public final class Builder {
         double YTDEarnings = Double.parseDouble(values[5]);
         double YTDTaxesPaid = Double.parseDouble(values[6]);
 
-        return new Employee(employeeType, name, ID, payRate, pretaxDeductions, YTDEarnings, YTDTaxesPaid);
+        switch (employeeType) {
+            case HOURLY:
+                return new HourlyEmployee(name, ID, payRate, pretaxDeductions, YTDEarnings, YTDTaxesPaid);
+            case SALARY:
+                return new SalaryEmployee(name, ID, payRate, pretaxDeductions, YTDEarnings, YTDTaxesPaid);
+            default:
+                throw new IllegalArgumentException("Unknown employee type: " + employeeType);
+        }
 
     }
 

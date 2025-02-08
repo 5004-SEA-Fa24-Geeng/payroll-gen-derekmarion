@@ -19,19 +19,18 @@ import org.junit.jupiter.api.Test;
 public class EmployeeTest {
 
     private String hourlyEmployeeString;
-    private Employee hourlyEmployee;
+    private HourlyEmployee hourlyEmployee;
     private PayStub hourlyEmployeePayStub;
     private String salaryEmployeeString;
-    private Employee salaryEmployee;
+    private SalaryEmployee salaryEmployee;
     private PayStub salaryEmployeePayStub;
 
     @BeforeEach
     public void setUp() {
         hourlyEmployeeString = "HOURLY,Luffy,s192,30.00,0,20000,4530";
-        hourlyEmployee = Builder.buildEmployeeFromCSV(hourlyEmployeeString);
+        hourlyEmployee = (HourlyEmployee) Builder.buildEmployeeFromCSV(hourlyEmployeeString);
         salaryEmployeeString = "SALARY,Nami,s193,200000,1000,17017,4983";
-        salaryEmployee = Builder.buildEmployeeFromCSV(salaryEmployeeString);
-
+        salaryEmployee = (SalaryEmployee) Builder.buildEmployeeFromCSV(salaryEmployeeString);
     }
 
     @Test
