@@ -3,63 +3,118 @@ package student;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+/**
+ * Abstract class representing an employee.
+ */
 public abstract class Employee extends CSVStringFormatter implements IEmployee {
 
-    protected EmployeeType employeeType;
-    protected String name;
-    protected String ID;
-    protected double payRate;
-    protected double pretaxDeductions;
-    protected double YTDEarnings;
-    protected double YTDTaxesPaid;
-    protected static double TAX_RATE = 0.2265;
+    private EmployeeType employeeType;
+    private String name;
+    private String id;
+    private double payRate;
+    private double pretaxDeductions;
+    private double ytdEarnings;
+    private double ytdTaxesPaid;
+    private static double taxRate = 0.2265;
 
+    /**
+     * Constructs an Employee object.
+     *
+     * @param employeeType     the type of the employee
+     * @param name             the name of the employee
+     * @param ID               the ID of the employee
+     * @param payRate          the pay rate of the employee
+     * @param pretaxDeductions the pretax deductions of the employee
+     * @param YTDEarnings      the year-to-date earnings of the employee
+     * @param YTDTaxesPaid     the year-to-date taxes paid by the employee
+     */
     public Employee(EmployeeType employeeType, String name, String ID, double payRate, double pretaxDeductions,
             double YTDEarnings, double YTDTaxesPaid) {
         this.employeeType = employeeType;
         this.name = name;
-        this.ID = ID;
+        this.id = ID;
         this.payRate = payRate;
         this.pretaxDeductions = pretaxDeductions;
-        this.YTDEarnings = YTDEarnings;
-        this.YTDTaxesPaid = YTDTaxesPaid;
+        this.ytdEarnings = YTDEarnings;
+        this.ytdTaxesPaid = YTDTaxesPaid;
     }
 
+    /**
+     * Gets the name of the employee.
+     *
+     * @return the name of the employee
+     */
     @Override
     public String getName() {
         return this.name;
     }
 
+    /**
+     * Gets the ID of the employee.
+     *
+     * @return the ID of the employee
+     */
     @Override
     public String getID() {
-        return this.ID;
+        return this.id;
     }
 
+    /**
+     * Gets the pay rate of the employee.
+     *
+     * @return the pay rate of the employee
+     */
     @Override
     public double getPayRate() {
         return this.payRate;
     }
 
+    /**
+     * Gets the type of the employee.
+     *
+     * @return the type of the employee
+     */
     @Override
     public EmployeeType getEmployeeType() {
         return this.employeeType;
     }
 
+    /**
+     * Gets the year-to-date earnings of the employee.
+     *
+     * @return the year-to-date earnings of the employee
+     */
     @Override
     public double getYTDEarnings() {
-        return this.YTDEarnings;
+        return this.ytdEarnings;
     }
 
+    /**
+     * Gets the year-to-date taxes paid by the employee.
+     *
+     * @return the year-to-date taxes paid by the employee
+     */
     @Override
     public double getYTDTaxesPaid() {
-        return this.YTDTaxesPaid;
+        return this.ytdTaxesPaid;
     }
 
+    /**
+     * Gets the pretax deductions of the employee.
+     *
+     * @return the pretax deductions of the employee
+     */
     @Override
     public double getPretaxDeductions() {
         return this.pretaxDeductions;
     }
 
+    /**
+     * Runs the payroll for the employee.
+     *
+     * @param hoursWorked the hours worked by the employee
+     * @return the pay stub for the current pay period
+     */
     @Override
     public PayStub runPayroll(double hoursWorked) {
         if (hoursWorked < 0) {
@@ -69,7 +124,7 @@ public abstract class Employee extends CSVStringFormatter implements IEmployee {
 
         double grossPay = calculateGrossPay(hoursWorked);
         double netPay = grossPay - this.getPretaxDeductions();
-        double taxes = TAX_RATE * netPay;
+        double taxes = taxRate * netPay;
 
         BigDecimal finalNetPay = new BigDecimal(netPay - taxes).setScale(2, RoundingMode.HALF_UP);
         BigDecimal roundedTaxes = new BigDecimal(taxes).setScale(2, RoundingMode.HALF_UP);
@@ -83,16 +138,37 @@ public abstract class Employee extends CSVStringFormatter implements IEmployee {
                 this.getYTDEarnings(), this.getYTDTaxesPaid());
     }
 
+    /**
+     * Calculates the gross pay for the employee.
+     *
+     * @param hoursWorked the hours worked by the employee
+     * @return the gross pay for the employee
+     */
     protected abstract double calculateGrossPay(double hoursWorked);
 
+    /**
+     * Adds to the year-to-date earnings of the employee.
+     *
+     * @param finalNetPay the net pay to add to the year-to-date earnings
+     */
     public void addYTDEarnings(double finalNetPay) {
-        this.YTDEarnings += finalNetPay;
+        this.ytdEarnings += finalNetPay;
     }
 
+    /**
+     * Adds to the year-to-date taxes paid by the employee.
+     *
+     * @param taxes the taxes to add to the year-to-date taxes paid
+     */
     public void addYTDTaxesPaid(double taxes) {
-        this.YTDTaxesPaid += taxes;
+        this.ytdTaxesPaid += taxes;
     }
 
+    /**
+     * Converts the employee object to a CSV string.
+     *
+     * @return the CSV string representation of the employee
+     */
     @Override
     public String toCSV() {
         StringBuilder employeeString = new StringBuilder();
