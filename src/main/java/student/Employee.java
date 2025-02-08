@@ -12,6 +12,9 @@ public class Employee implements IEmployee {
     private double pretaxDeductions;
     private double YTDEarnings;
     private double YTDTaxesPaid;
+    private static double OVERTIME_RATE = 1.5;
+    private static double TAX_RATE = 0.2265;
+    private static double SALARIED_MONTHLY_PAYMENTS = 24.0;
 
     public Employee(String employeeType, String name, String ID, double payRate, double pretaxDeductions,
             double YTDEarnings, double YTDTaxesPaid) {
@@ -111,12 +114,12 @@ public class Employee implements IEmployee {
         double pay;
         if (this.getEmployeeType().equals("HOURLY")) {
             double regularPay = Math.min(hoursWorked, 40) * this.getPayRate();
-            double overtime_pay = Math.max(0, hoursWorked - 40) * this.getPayRate() * 1.5; // TODO: remove magic number
+            double overtime_pay = Math.max(0, hoursWorked - 40) * this.getPayRate() * OVERTIME_RATE;
             pay = regularPay + overtime_pay;
             System.out.println("Hourly Employee - Regular Pay: " + regularPay
                     + ", Total Pay: " + pay);
         } else if (this.getEmployeeType().equals("SALARY")) {
-            pay = this.getPayRate() / 24.0; // TODO: get rid of magic number
+            pay = this.getPayRate() / SALARIED_MONTHLY_PAYMENTS;
             System.out.println("Salary Employee - Pay: " + pay);
         } else {
             System.out.println("Unknown employee type: " + this.getEmployeeType());
@@ -127,7 +130,7 @@ public class Employee implements IEmployee {
         double netPay = pay - this.getPretaxDeductions();
 
         // Calculate taxes
-        double taxes = 0.2265 * netPay; // TODO: get rid of magic number
+        double taxes = TAX_RATE * netPay;
 
         // Round to the nearest cent
         BigDecimal finalNetPay = new BigDecimal(netPay - taxes).setScale(2, RoundingMode.HALF_UP);
