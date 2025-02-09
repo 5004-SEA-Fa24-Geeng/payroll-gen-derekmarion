@@ -46,7 +46,6 @@ public class PayStub extends CSVStringFormatter implements IPayStub {
         payStubString.append(formatDouble(this.getTaxesPaid())).append(",");
         payStubString.append(formatDouble(this.getYTDEarnings())).append(",");
         payStubString.append(formatDouble(this.getYTDTaxesPaid()));
-        System.out.println("PayStub CSV: " + payStubString.toString());
         return payStubString.toString();
     }
 }

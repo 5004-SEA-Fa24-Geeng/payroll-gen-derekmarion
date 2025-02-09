@@ -166,7 +166,6 @@ public abstract class Employee extends CSVStringFormatter implements IEmployee {
         employeeString.append(formatDouble(this.getPretaxDeductions())).append(",");
         employeeString.append(formatDouble(this.getYTDEarnings())).append(",");
         employeeString.append(formatDouble(this.getYTDTaxesPaid()));
-        System.out.println("Employee CSV: " + employeeString.toString());
         return employeeString.toString();
     }
 }
