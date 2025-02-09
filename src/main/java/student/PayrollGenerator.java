@@ -30,7 +30,7 @@ public final class PayrollGenerator {
     /** default file name for employees. */
     private static final String DEFAULT_EMPLOYEE_FILE = "resources/employees.csv";
     /** default file name for pay stub output. */
-    private static final String DEFAULT_PAYROLL_FILE = "resources/paystubs.csv";
+    private static final String DEFAULT_PAYROLL_FILE = "resources/pay_stubs.csv";
     /** default time card file name. */
     private static final String DEFAULT_TIME_CARD_FILE = "resources/time_cards.csv";
 
@@ -56,13 +56,13 @@ public final class PayrollGenerator {
         List<String> employeeLines = FileUtil.readFileToList(arguments.getEmployeeFile());
         List<String> timeCards = FileUtil.readFileToList(arguments.getTimeCards());
 
-        List<IEmployee> employees = employeeLines.stream().map(Builder::buildEmployeeFromCSV)
+        List<Employee> employees = employeeLines.stream().map(Builder::buildEmployeeFromCSV)
                 .collect(Collectors.toList());
 
-        List<ITimeCard> timeCardList = timeCards.stream().map(Builder::buildTimeCardFromCSV)
+        List<TimeCard> timeCardList = timeCards.stream().map(Builder::buildTimeCardFromCSV)
                 .collect(Collectors.toList());
 
-        List<IPayStub> payStubs = new LinkedList<>();
+        List<PayStub> payStubs = new LinkedList<>();
 
         // now we suggest looping through the timeCardList and for each timecard, find
         // the matching employee and generate a new paystub object. Then add that
@@ -74,9 +74,9 @@ public final class PayrollGenerator {
         // as it is invalid, but if is 0, you still generate a paystub, but the amount
         // is 0.
 
-        for (ITimeCard timeCard : timeCardList) {
+        for (TimeCard timeCard : timeCardList) {
             // Find employee that corresponds to timecard
-            IEmployee matchingEmployee = employees.stream()
+            Employee matchingEmployee = employees.stream()
                     .filter(employee -> employee.getID().equals(timeCard.getEmployeeID()))
                     .findFirst()
                     .orElse(null);
@@ -86,12 +86,11 @@ public final class PayrollGenerator {
             }
 
             // Generate a new pay stub object
-            IPayStub payStub = matchingEmployee.runPayroll(timeCard.getHoursWorked());
+            PayStub payStub = matchingEmployee.runPayroll(timeCard.getHoursWorked());
 
             // Add paystub if valid
             if (payStub != null) {
                 payStubs.add(payStub);
-            } else {
             }
         }
 
