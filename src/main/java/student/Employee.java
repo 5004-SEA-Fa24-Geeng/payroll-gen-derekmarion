@@ -108,7 +108,6 @@ public abstract class Employee extends CSVStringFormatter implements IEmployee {
     @Override
     public PayStub runPayroll(double hoursWorked) {
         if (hoursWorked < 0) {
-            System.out.println("Invalid hours worked: " + hoursWorked);
             return null;
         }
 
@@ -118,8 +117,6 @@ public abstract class Employee extends CSVStringFormatter implements IEmployee {
 
         BigDecimal finalNetPay = new BigDecimal(netPay - taxes).setScale(2, RoundingMode.HALF_UP);
         BigDecimal roundedTaxes = new BigDecimal(taxes).setScale(2, RoundingMode.HALF_UP);
-
-        System.out.println("Net Pay: " + finalNetPay + ", Taxes: " + roundedTaxes);
 
         this.addYTDEarnings(finalNetPay.doubleValue());
         this.addYTDTaxesPaid(roundedTaxes.doubleValue());

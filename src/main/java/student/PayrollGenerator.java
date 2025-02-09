@@ -33,8 +33,6 @@ public final class PayrollGenerator {
     private static final String DEFAULT_PAYROLL_FILE = "resources/pay_stubs.csv";
     /** default time card file name. */
     private static final String DEFAULT_TIME_CARD_FILE = "resources/time_cards.csv";
-    /** output for updated employee file */
-    private static final String EMPLOYEE_OUT_FILE = "resources/employees_out.csv";
 
     /**
      * private constructor to prevent instantiation.
@@ -84,7 +82,6 @@ public final class PayrollGenerator {
                     .orElse(null);
 
             if (matchingEmployee == null) {
-                System.out.println("No matching employee found for TimeCard: " + timeCard.getEmployeeID());
                 continue;
             }
 
@@ -93,17 +90,15 @@ public final class PayrollGenerator {
 
             // Add paystub if valid
             if (payStub != null) {
-                System.out.println("Generated PayStub: " + payStub.toCSV());
                 payStubs.add(payStub);
             } else {
-                System.out.println("Invalid PayStub for Employee: " + matchingEmployee.getID());
             }
         }
 
         // now save out employees to a new file
         employeeLines = employees.stream().map(IEmployee::toCSV).collect(Collectors.toList());
         employeeLines.add(0, FileUtil.EMPLOYEE_HEADER);
-        FileUtil.writeFile(EMPLOYEE_OUT_FILE, employeeLines);
+        FileUtil.writeFile(DEFAULT_EMPLOYEE_FILE, employeeLines);
 
         // now save out the pay stubs
         List<String> payStubLines = payStubs.stream().filter(x -> x != null).map(IPayStub::toCSV)
