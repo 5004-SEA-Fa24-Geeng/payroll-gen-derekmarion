@@ -48,6 +48,17 @@ public abstract class Employee extends CSVStringFormatter implements IEmployee {
      */
     private static double taxRate = 0.2265;
 
+    /**
+     * Constructs an Employee object.
+     * 
+     * @param name
+     * @param id
+     * @param payRate
+     * @param ytdEarnings
+     * @param ytdTaxesPaid
+     * @param pretaxDeductions
+     * @param employeeType
+     */
     public Employee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid,
             double pretaxDeductions, EmployeeType employeeType) {
         this.name = name;

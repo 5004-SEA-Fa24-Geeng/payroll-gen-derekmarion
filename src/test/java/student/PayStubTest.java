@@ -34,12 +34,12 @@ public class PayStubTest {
 
     @Test
     public void testGetYTDEarnings() {
-        assertEquals(100000, payStub.getYTDEarnings());
+        assertEquals(100000, payStub.getYtdEarnings());
     }
 
     @Test
     public void testGetYTDTaxesPaid() {
-        assertEquals(25000, payStub.getYTDTaxesPaid());
+        assertEquals(25000, payStub.getYtdTaxesPaid());
     }
 
     @Test

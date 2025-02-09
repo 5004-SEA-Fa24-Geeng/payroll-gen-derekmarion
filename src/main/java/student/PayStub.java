@@ -23,28 +23,28 @@ public class PayStub extends CSVStringFormatter implements IPayStub {
     /**
      * The year-to-date earnings of the employee.
      */
-    private double YTDEarnings;
+    private double ytdEarnings;
 
     /**
      * The year-to-date taxes paid by the employee.
      */
-    private double YTDTaxesPaid;
+    private double ytdTaxesPaid;
 
     /**
      * Constructs a PayStub object.
      *
      * @param employeeName the name of the employee
-     * @param netPay the net pay of the employee
-     * @param taxes the taxes paid by the employee
-     * @param YTDEarnings the year-to-date earnings of the employee
-     * @param YTDTaxesPaid the year-to-date taxes paid by the employee
+     * @param netPay       the net pay of the employee
+     * @param taxes        the taxes paid by the employee
+     * @param ytdEarnings  the year-to-date earnings of the employee
+     * @param ytdTaxesPaid the year-to-date taxes paid by the employee
      */
-    public PayStub(String employeeName, double netPay, double taxes, double YTDEarnings, double YTDTaxesPaid) {
+    public PayStub(String employeeName, double netPay, double taxes, double ytdEarnings, double ytdTaxesPaid) {
         this.employeeName = employeeName;
         this.netPay = netPay;
         this.taxes = taxes;
-        this.YTDEarnings = YTDEarnings;
-        this.YTDTaxesPaid = YTDTaxesPaid;
+        this.ytdEarnings = ytdEarnings;
+        this.ytdTaxesPaid = ytdTaxesPaid;
     }
 
     /**
@@ -81,8 +81,8 @@ public class PayStub extends CSVStringFormatter implements IPayStub {
      *
      * @return the year-to-date earnings of the employee
      */
-    public double getYTDEarnings() {
-        return this.YTDEarnings;
+    public double getYtdEarnings() {
+        return this.ytdEarnings;
     }
 
     /**
@@ -90,8 +90,8 @@ public class PayStub extends CSVStringFormatter implements IPayStub {
      *
      * @return the year-to-date taxes paid by the employee
      */
-    public double getYTDTaxesPaid() {
-        return this.YTDTaxesPaid;
+    public double getYtdTaxesPaid() {
+        return this.ytdTaxesPaid;
     }
 
     /**
@@ -105,8 +105,8 @@ public class PayStub extends CSVStringFormatter implements IPayStub {
         payStubString.append(this.getEmployeeName()).append(",");
         payStubString.append(formatDouble(this.getPay())).append(",");
         payStubString.append(formatDouble(this.getTaxesPaid())).append(",");
-        payStubString.append(formatDouble(this.getYTDEarnings())).append(",");
-        payStubString.append(formatDouble(this.getYTDTaxesPaid()));
+        payStubString.append(formatDouble(this.getYtdEarnings())).append(",");
+        payStubString.append(formatDouble(this.getYtdTaxesPaid()));
         return payStubString.toString();
     }
 }

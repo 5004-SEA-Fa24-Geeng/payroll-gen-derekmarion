@@ -5,6 +5,9 @@ package student;
  */
 public class HourlyEmployee extends Employee {
 
+    /**
+     * The overtime rate for the hourly employee.
+     */
     private static double overtimeRate = 1.5;
 
     /**

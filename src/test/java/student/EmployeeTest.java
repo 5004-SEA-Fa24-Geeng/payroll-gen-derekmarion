@@ -38,8 +38,8 @@ public class EmployeeTest {
         hourlyEmployeePayStub = hourlyEmployee.runPayroll(45);
         assertEquals(1102.24, hourlyEmployeePayStub.getPay(), 0.01);
         assertEquals(322.76, hourlyEmployeePayStub.getTaxesPaid(), 0.01);
-        assertEquals(21102.24, hourlyEmployeePayStub.getYTDEarnings(), 0.01);
-        assertEquals(4852.76, hourlyEmployeePayStub.getYTDTaxesPaid(), 0.01);
+        assertEquals(21102.24, hourlyEmployeePayStub.getYtdEarnings(), 0.01);
+        assertEquals(4852.76, hourlyEmployeePayStub.getYtdTaxesPaid(), 0.01);
     }
 
     @Test
@@ -47,8 +47,8 @@ public class EmployeeTest {
         salaryEmployeePayStub = salaryEmployee.runPayroll(45);
         assertEquals(5672.33, salaryEmployeePayStub.getPay(), 0.01);
         assertEquals(1661.00, salaryEmployeePayStub.getTaxesPaid(), 0.01);
-        assertEquals(22689.33, salaryEmployeePayStub.getYTDEarnings(), 0.01);
-        assertEquals(6644.00, salaryEmployeePayStub.getYTDTaxesPaid(), 0.01);
+        assertEquals(22689.33, salaryEmployeePayStub.getYtdEarnings(), 0.01);
+        assertEquals(6644.00, salaryEmployeePayStub.getYtdTaxesPaid(), 0.01);
     }
 
     @Test

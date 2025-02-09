@@ -5,6 +5,9 @@ package student;
  */
 public class SalaryEmployee extends Employee {
 
+    /**
+     * The number of monthly payments for the salaried employee.
+     */
     private static double salariedMonthlyPayments = 24.0;
 
     /**
