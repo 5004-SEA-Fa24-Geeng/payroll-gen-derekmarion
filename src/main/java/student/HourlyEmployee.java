@@ -5,7 +5,7 @@ package student;
  */
 public class HourlyEmployee extends Employee {
 
-    private static double OVERTIME_RATE = 1.5;
+    private static double overtimeRate = 1.5;
 
     /**
      * Constructs an HourlyEmployee object.
@@ -22,10 +22,16 @@ public class HourlyEmployee extends Employee {
         super(name, id, payRate, ytdEarnings, ytdTaxesPaid, pretaxDeductions, EmployeeType.HOURLY);
     }
 
+    /**
+     * Calculates the gross pay for the hourly employee.
+     *
+     * @param hoursWorked the hours worked by the employee
+     * @return the gross pay for the employee
+     */
     @Override
     protected double calculateGrossPay(double hoursWorked) {
         double regularPay = Math.min(hoursWorked, 40) * this.getPayRate();
-        double overtimePay = Math.max(0, hoursWorked - 40) * this.getPayRate() * OVERTIME_RATE;
+        double overtimePay = Math.max(0, hoursWorked - 40) * this.getPayRate() * overtimeRate;
         return regularPay + overtimePay;
     }
 }

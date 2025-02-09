@@ -8,14 +8,44 @@ import java.math.RoundingMode;
  */
 public abstract class Employee extends CSVStringFormatter implements IEmployee {
 
+    /**
+     * The name of the employee.
+     */
     private String name;
+
+    /**
+     * The ID of the employee.
+     */
     private String id;
+
+    /**
+     * The pay rate of the employee.
+     */
     private double payRate;
+
+    /**
+     * The year-to-date earnings of the employee.
+     */
     private double ytdEarnings;
+
+    /**
+     * The year-to-date taxes paid by the employee.
+     */
     private double ytdTaxesPaid;
+
+    /**
+     * The pretax deductions of the employee.
+     */
     private double pretaxDeductions;
+
+    /**
+     * The type of the employee.
+     */
     private EmployeeType employeeType;
 
+    /**
+     * The tax rate applied to the employee's earnings.
+     */
     private static double taxRate = 0.2265;
 
     public Employee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid,
