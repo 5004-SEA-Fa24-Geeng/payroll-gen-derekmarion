@@ -30,7 +30,7 @@ public final class PayrollGenerator {
     /** default file name for employees. */
     private static final String DEFAULT_EMPLOYEE_FILE = "resources/employees.csv";
     /** default file name for pay stub output. */
-    private static final String DEFAULT_PAYROLL_FILE = "resources/pay_stubs.csv";
+    private static final String DEFAULT_PAYROLL_FILE = "resources/paystubs.csv";
     /** default time card file name. */
     private static final String DEFAULT_TIME_CARD_FILE = "resources/time_cards.csv";
 
