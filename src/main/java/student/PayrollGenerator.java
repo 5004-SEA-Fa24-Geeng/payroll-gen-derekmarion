@@ -33,6 +33,8 @@ public final class PayrollGenerator {
     private static final String DEFAULT_PAYROLL_FILE = "resources/pay_stubs.csv";
     /** default time card file name. */
     private static final String DEFAULT_TIME_CARD_FILE = "resources/time_cards.csv";
+    // ** outfile location for updated employees.csv file */
+    // private static final String UPDATED_EMPLOYEE_FILE = "resources/updated_employees.csv";
 
     /**
      * private constructor to prevent instantiation.
@@ -87,6 +89,10 @@ public final class PayrollGenerator {
 
             // Generate a new pay stub object
             PayStub payStub = matchingEmployee.runPayroll(timeCard.getHoursWorked());
+
+            // Check if employee instance variables were updated
+            System.out.println("Updated YTD earnings:" + matchingEmployee.getYTDEarnings());
+            System.out.println("Updated YTD taxes paid:" + matchingEmployee.getYTDTaxesPaid());
 
             // Add paystub if valid
             if (payStub != null) {

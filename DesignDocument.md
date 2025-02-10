@@ -136,7 +136,125 @@ Go through your completed code, and update your class diagram to reflect the fin
 > If you resubmit your assignment for manual grading, this is a section that often needs updating. You should double check with every resubmit to make sure it is up to date.
 
 
+```mermaid
+---
+title: Post-Implementation Design
+---
+classDiagram
+    direction LR
+    class Builder {
+        -Builder()
+        +static Employee buildEmployeeFromCSV(String csv)
+        +static TimeCard buildTimeCardFromCSV(String csv)
+    }
+    Builder --> Employee : generates
+    Builder --> TimeCard : generates
 
+    class FileUtil {
+        +static final String EMPLOYEE_HEADER
+        +static final String PAY_STUB_HEADER
+        -FileUtil()
+        +static List<String> readFileToList(String file)
+        +static void writeFile(String outfile, List<String> lines)
+        +static void writeFile(String outfile, List<String> lines, boolean backup) 
+    }
+
+    class IEmployee {
+        <<interface>>
+        +String getName()
+        +String getID()
+        +double getPayRate()
+        +String getEmployeeType()
+        +double getYTDEarnings()
+        +double getYTDTaxesPaid()
+        +double getPretaxDeductions()
+        +IPayStub runPayroll(double hoursWorked)
+        +String toCSV()
+    }
+    IEmployee <|.. Employee
+    class Employee {
+        -String name
+        -String ID
+        -double payRate
+        -EmployeeType employeeType
+        -double YTDEarnings
+        -double YTDTaxesPaid
+        -double pretaxDeductions
+        -double hoursWorked
+        +String getName()
+        +String getID()
+        +double getPayRate()
+        +String getEmployeeType()
+        +double getYTDEarnings()
+        +double getYTDTaxesPaid()
+        +double getPretaxDeductions()
+        +PayStub runPayroll(double hoursWorked)
+        +String toCSV()
+    }
+    Employee --> PayStub : generates
+    Employee ..> EmployeeType : uses
+
+    class EmployeeType {
+        <<enumeration>>
+        HOURLY
+        SALARY
+    }
+    
+    class HourlyEmployee {
+        +HourlyEmployee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions)
+        +double calculateGrossPay(double hoursWorked)
+    }
+    Employee <|-- HourlyEmployee
+
+    class SalaryEmployee {
+        +SalaryEmployee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions)
+        +double calculateGrossPay(double hoursWorked)
+    }
+    Employee <|-- SalaryEmployee
+  
+    class IPayStub {
+        <<interface>>
+        +double getPay()
+        +double getTaxesPaid()
+        +String toCSV
+    }
+    IPayStub <|.. PayStub
+    class PayStub {
+        -double pay
+        -double taxesPaid
+        +double getPay()
+        +double getTaxesPaid()
+        +String toCSV
+    }
+
+    class ITimeCard {
+        <<interface>>
+        +getEmployeeID()
+        +getHoursWorked()
+    }
+    ITimeCard <|.. TimeCard
+    class TimeCard {
+        -String EmployeeID
+        -int hoursWorked
+        +String getEmployeeID()
+        +int getHoursWorked()
+    }
+
+    class PayrollGenerator {
+        -static final String DEFAULT_EMPLOYEE_FILE
+        -static final String DEFAULT_PAYROLL_FILE
+        -PayrollGenerator()
+        +static void main(String[] args)
+    }
+    PayrollGenerator ..> FileUtil : uses
+    PayrollGenerator ..> Builder : uses
+
+    class CSVStringBuilder {
+        <<abstract>>
+        _+String formatDouble(double value)_
+    }
+    Employee <|-- CSVStringBuilder
+```
 
 
 ## (FINAL DESIGN): Reflection/Retrospective
