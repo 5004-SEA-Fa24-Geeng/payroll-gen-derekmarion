@@ -173,6 +173,8 @@ classDiagram
     }
     IEmployee <|.. Employee
     class Employee {
+        <<abstract>>
+        +Employee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid, double pretaxDeductions)
         -String name
         -String ID
         -double payRate
@@ -220,6 +222,7 @@ classDiagram
     }
     IPayStub <|.. PayStub
     class PayStub {
+        +PayStub(double pay, double taxesPaid)
         -double pay
         -double taxesPaid
         +double getPay()
@@ -236,6 +239,7 @@ classDiagram
     class TimeCard {
         -String EmployeeID
         -int hoursWorked
+        +TimeCard(String employeeID, double hoursWorked)
         +String getEmployeeID()
         +int getHoursWorked()
     }
@@ -249,11 +253,11 @@ classDiagram
     PayrollGenerator ..> FileUtil : uses
     PayrollGenerator ..> Builder : uses
 
-    class CSVStringBuilder {
+    class CSVStringFormatter {
         <<abstract>>
         _+String formatDouble(double value)_
     }
-    Employee <|-- CSVStringBuilder
+    Employee <|-- CSVStringFormatter
 ```
 
 
@@ -263,3 +267,7 @@ classDiagram
 > The value of reflective writing has been highly researched and documented within computer science, from learning new information to showing higher salaries in the workplace. For this next part, we encourage you to take time, and truly focus on your retrospective.
 
 Take time to reflect on how your design has changed. Write in *prose* (i.e. do not bullet point your answers - it matters in how our brain processes the information). Make sure to include what were some major changes, and why you made them. What did you learn from this process? What would you do differently next time? What was the most challenging part of this process? For most students, it will be a paragraph or two. 
+
+Initially I did not have separate child classes for HourlyEmployee and SalaryEmployee. I implemented the IEmployee interface in an Employee class and then had payroll calculation logic for different employee types based on an employeeType attributed for the Employee class. Later, I refactored Employee as an abstract class that was extended by HourlyEmployee and SalaryEmployee. Overall, even though this change generated two additional classes, it also simplified the payroll calculation logic and made the code cleaner and more extensible, and this helped me begin to appreciate the power of the object-oriented paradigm.
+
+Additionally, I encountered significant setbacks when I accidentally modified the output file. I made a critical assumption that the program did not need to update the input file. This early (and incorrect) assumption led to a lot of frustration later as I couldn't determine why my tests were passing locally but the autograded tests were not. This was a hard lesson for me. In the future, when adding to existing codebases, I need to be careful to only make necessary changes, as using the program in a way it was not originally intended could break it/the tests. Of course, this could be a good thing in some cases, but not in others.
