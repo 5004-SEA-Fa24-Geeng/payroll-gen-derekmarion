@@ -11,8 +11,8 @@ How many hours did it take you to complete this assignment (estimate)?
 Did you collaborate with any other students/TAs/Professors? If so, tell us who and in what
 capacity.
 
-* Solicited advice on Piazza regarding autograder.
-  
+* Solicited advice on Piazza regarding autograder troubleshooting. Got a few anonymous responses but primarily communicated with Beth, Shirley, and Chris.
+   
 Did you use any external resources (you do not have to cite in class material)? (Cite them below)
 
 * GPT4o to look up syntax
@@ -23,6 +23,5 @@ Did you use any external resources (you do not have to cite in class material)? 
 
 (Optional) How would you improve the assignment?
 
-* I found that the autograder was very fussy for this assignment. After developing a working and well-tested solution locally, it took me many hours struggling with the autograder to determine why it was failing. If code needs to be implemented in a specific way to pass autograded test suites, it would be helpful to have more precise specifications for implementation. In this case, because the requirements were not very specific, I was able to produce a solution that was not testable by the autograder even though it fulfilled the requirements and was well tested locally.
 
 ---
