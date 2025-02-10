@@ -83,16 +83,13 @@ public final class PayrollGenerator {
                     .findFirst()
                     .orElse(null);
 
+            // Skip if no matching employee
             if (matchingEmployee == null) {
                 continue;
             }
 
             // Generate a new pay stub object
             PayStub payStub = matchingEmployee.runPayroll(timeCard.getHoursWorked());
-
-            // Check if employee instance variables were updated
-            System.out.println("Updated YTD earnings:" + matchingEmployee.getYTDEarnings());
-            System.out.println("Updated YTD taxes paid:" + matchingEmployee.getYTDTaxesPaid());
 
             // Add paystub if valid
             if (payStub != null) {
