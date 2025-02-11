@@ -152,13 +152,17 @@ public abstract class Employee extends CSVStringFormatter implements IEmployee {
             return null;
         }
 
+        // Calculate the gross pay, net pay, and taxes
         double grossPay = calculateGrossPay(hoursWorked);
         double netPay = grossPay - this.getPretaxDeductions();
         double taxes = taxRate * netPay;
 
+        // Round the final net pay and taxes to two decimal places
         BigDecimal finalNetPay = new BigDecimal(netPay - taxes).setScale(2, RoundingMode.HALF_UP);
         BigDecimal roundedTaxes = new BigDecimal(taxes).setScale(2, RoundingMode.HALF_UP);
 
+        // Add the net pay and taxes to the year-to-date earnings and taxes paid for the
+        // employee
         this.addYTDEarnings(finalNetPay.doubleValue());
         this.addYTDTaxesPaid(roundedTaxes.doubleValue());
 
