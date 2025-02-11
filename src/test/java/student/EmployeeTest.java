@@ -2,6 +2,7 @@ package student;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -121,5 +122,15 @@ public class EmployeeTest {
         String expectedSalaryCSV = "SALARY,Nami,s193,200000.0,1000.0,17017.0,4983.0";
         assertEquals(expectedHourlyCSV, hourlyEmployee.toCSV());
         assertEquals(expectedSalaryCSV, salaryEmployee.toCSV());
+    }
+
+    @Test
+    public void testNegativeValuesInConstructor() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            new HourlyEmployee("Test", "t001", -30.00, 0, 20000, 4530);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            new SalaryEmployee("Test", "t002", 200000, -1000, 17017, 4983);
+        });
     }
 }
