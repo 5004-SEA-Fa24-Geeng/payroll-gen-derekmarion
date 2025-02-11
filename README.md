@@ -16,6 +16,8 @@ capacity.
 Did you use any external resources (you do not have to cite in class material)? (Cite them below)
 
 * GPT4o to look up syntax
+* [^1]: [Paycom - Pay Equity](https://www.paycom.com/resources/blog/pay-equity/)
+* [^2]: [Salary.com - Pay Equity vs Pay Equality: What is the Difference?](https://www.salary.com/blog/pay-equity-vs-pay-equality-what-is-the-difference/)
 
 
 (Optional) What was your favorite part of the assignment?
