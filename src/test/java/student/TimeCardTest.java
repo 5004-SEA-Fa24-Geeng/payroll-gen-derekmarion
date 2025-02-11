@@ -1,7 +1,7 @@
 package student;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 public class TimeCardTest {
 
@@ -15,13 +15,6 @@ public class TimeCardTest {
     public void testGetHoursWorked() {
         TimeCard timeCard = new TimeCard("E123", 40.0);
         assertEquals(40.0, timeCard.getHoursWorked());
-    }
-
-    @Test
-    public void testTimeCardWithNegativeHours() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new TimeCard("E123", -40.0);
-        });
     }
 
 }

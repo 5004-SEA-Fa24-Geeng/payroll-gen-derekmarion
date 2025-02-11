@@ -58,13 +58,9 @@ public abstract class Employee extends CSVStringFormatter implements IEmployee {
      * @param ytdTaxesPaid
      * @param pretaxDeductions
      * @param employeeType
-     * @throws IllegalArgumentException if any of the numeric values are negative
      */
     public Employee(String name, String id, double payRate, double ytdEarnings, double ytdTaxesPaid,
             double pretaxDeductions, EmployeeType employeeType) {
-        if (payRate < 0 || ytdEarnings < 0 || ytdTaxesPaid < 0 || pretaxDeductions < 0) {
-            throw new IllegalArgumentException("Numeric values cannot be negative");
-        }
         this.name = name;
         this.id = id;
         this.payRate = payRate;

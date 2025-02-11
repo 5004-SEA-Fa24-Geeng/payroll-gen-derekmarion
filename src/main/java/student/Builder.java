@@ -34,20 +34,15 @@ public final class Builder {
         double ytdEarnings = Double.parseDouble(values[5]);
         double ytdTaxesPaid = Double.parseDouble(values[6]);
 
-        try {
-            switch (employeeType) {
-                case HOURLY:
-                    return new HourlyEmployee(name, id, payRate, ytdEarnings, ytdTaxesPaid, pretaxDeductions);
-                case SALARY:
-                    return new SalaryEmployee(name, id, payRate, ytdEarnings, ytdTaxesPaid, pretaxDeductions);
-                default:
-                    throw new IllegalArgumentException("Unknown employee type: " + employeeType);
-            }
-        } catch (IllegalArgumentException e) {
-            // Log and rethrow the exception
-            System.err.println("Error creating employee: " + e.getMessage());
-            throw e;
+        switch (employeeType) {
+            case HOURLY:
+                return new HourlyEmployee(name, id, payRate, ytdEarnings, ytdTaxesPaid, pretaxDeductions);
+            case SALARY:
+                return new SalaryEmployee(name, id, payRate, ytdEarnings, ytdTaxesPaid, pretaxDeductions);
+            default:
+                throw new IllegalArgumentException("Unknown employee type: " + employeeType);
         }
+
     }
 
     /**
@@ -62,12 +57,6 @@ public final class Builder {
         String employeeID = values[0];
         double hoursWorked = Double.parseDouble(values[1]);
 
-        try {
-            return new TimeCard(employeeID, hoursWorked);
-        } catch (IllegalArgumentException e) {
-            // Log and rethrow the exception
-            System.err.println("Error creating time card: " + e.getMessage());
-            throw e;
-        }
+        return new TimeCard(employeeID, hoursWorked);
     }
 }
